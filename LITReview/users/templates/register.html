@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section class=" d-flex flex-column align-items-center justify-content-center mt-5">
+    <h2 class="fw-normal"> Inscrivez-vous</h2>
+    <form method="post" class="form-goup">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="d-flex flex-row justify-content-end">
+            <button type="button" onclick="location.href='{% url 'login' %}'"
+                class="btn btn-light border border-black mt-2 me-5 ">Retourner</button>
+            <button type="submit" class="btn btn-primary border border-black mt-2 ">S'incrire</button>
+        </div>
+    </form>
+</section>
+
+{% endblock content %}

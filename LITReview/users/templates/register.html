@@ -7,8 +7,8 @@
         {% csrf_token %}
         {{ form|crispy }}
         <div class="d-flex flex-row justify-content-end">
-            <button type="button" onclick="location.href='{% url 'login' %}'"
-                class="btn btn-light border border-black mt-2 me-5 ">Retourner</button>
+            <a type="button" href="{% url 'login' %}"
+                class="btn btn-light border border-black mt-2 me-5 ">Retourner</a>
             <button type="submit" class="btn btn-primary border border-black mt-2 ">S'incrire</button>
         </div>
     </form>

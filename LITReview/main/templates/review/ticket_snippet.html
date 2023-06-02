@@ -12,8 +12,8 @@
         <h3 class="fw-medium">{{post.title}}</h3>
         <p class="">{{post.description}}</p>
         {% if post.image %}
-        <div class="ticket_image">
-            <img class="object-fit-contain" src="{{ post.image.url }}" alt="{{post.title}}">
+        <div class="ticket_image w-50">
+            <img class="object-fit-contain w-100" src="{{ post.image.url }}" alt="{{post.title}}">
         </div>
         {% endif %}
 

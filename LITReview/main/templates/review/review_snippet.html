@@ -32,5 +32,11 @@
             <img class="object-fit-contain" src="{{ post.ticket.image.url }}" alt="{{post.ticket.title}}">
         </div>
         {% endif %}
+        <div>
+            {% if post.ticket.user != user%}
+            <a href="{% url 'review_ticket' post.ticket.pk %}" type="button"
+                class="text-black px-3 py-2 border rounded border-black float-end text-decoration-none">Créer une critique</a>
+            {% endif %}
+        </div>
     </div>
 </article>

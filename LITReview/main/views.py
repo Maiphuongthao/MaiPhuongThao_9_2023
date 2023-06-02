@@ -1,6 +1,7 @@
 from itertools import chain
 
 from django.contrib import messages
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import CharField, Value
@@ -29,10 +30,10 @@ def feed(request):
         chain(reviews, tickets), key=lambda post: post.time_created, reverse=True
     )
 
-    reviewed_tickets = get_reviewed_tickets()
+    reviewed_tickets= get_reviewed_tickets()
 
     return render(
-        request, "review/feed.html", {"posts": posts, "reviewed": reviewed_tickets}
+        request, "review/feed.html", {"posts": posts, "reviewed": reviewed_tickets,"user": request.user }
     )
 
 
@@ -88,7 +89,7 @@ def create_ticket(request):
                     image=image,
                 )
                 messages.success(request, "Votre ticket est crée")
-                return redirect("flux")
+                return redirect(settings.LOGIN_REDIRECT_URL)
             except Exception as e:
                 messages.error(request, f"Error {e}")
     else:
@@ -121,7 +122,7 @@ def create_review(request):
                     body=request.POST["body"],
                 )
                 messages.success(request, "Vous avez posté une critique.")
-                return redirect("flux")
+                return redirect(settings.LOGIN_REDIRECT_URL)
             except Exception as e:
                 messages.error(request, f"Error {e}")
     else:
@@ -148,7 +149,7 @@ def create_review_ticket(request, id=None):
                 body=request.POST["body"],
             )
             messages.success(request, f"Vous avez crée une critque pour {t.title}")
-            return redirect("flux")
+            return redirect(settings.LOGIN_REDIRECT_URL)
     else:
         r = ReviewForm()
     return render(request, "review/create_review_ticket.html", {"r": r, "t": t})

@@ -3,11 +3,14 @@
 
 **L'applocation présente deux cas d'utilisation principaux:**
 
+
 1. Les personnes qui demandent des critiques sur un livre ou sur un article particulier ;
 2. Les personnes qui recherchent des articles et des livres intéressants à lire, en se basant sur les critiques des autres.
 
 
+
 **Le site doit respecter les directives suivantes:**
+
 
 - Se connecter et s'incrire, le site n'est pas accessible sans l'uthentification
 - User peut voir les tickets et critiques qui sont crées par lui même ou par ses abonnements en ordre le plus récents
@@ -16,6 +19,7 @@
 - Voir leur propres tickets ou critiques sur la page posts
 - Suivre les autres utilisateurs en mettant leur username
 - Voir les abonnements et abonés
+
 
 ## Initialisation du projet
 

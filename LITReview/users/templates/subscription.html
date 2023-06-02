@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block content %}
+<section class="d-flex flex-column align-items-center mt-5 w-75 ">
+    <h2 class="fw-normal">Suivre d'autres utilisateurs</h2>
+    <form method="post" class="w-75 d-flex flex-column align-items-center my-5 ">
+        {% csrf_token %}
+        <input type="text" class="form-control form-control-lg" name="followed_user"
+            placeholder="Nom d'utilisateur">
+        <button type="submit" class="btn btn-light border border-black mt-4 w-25">Envoyer</button>
+    </form>
+    <h2 class="fw-normal">Abonnements</h2>
+    <div class="mb-5 w-100">
+        {% if user_follows %}
+        <ul class="mt-4 ">
+            {% for user in user_follows %}
+            <li class="d-flex gap-0 border border-black" >
+                <div class="ps-2 flex-grow-1 py-2">
+                    {{user.followed_user.username}}  
+                </div>
+                <div class="border-start border-black px-2 py-2">
+                    <a class="text-decoration-none text-black" href="{% url 'delete_subscription' user.pk %}">Se
+                        désabonner</a>
+                </div>
+            </li>
+
+            {% endfor %}
+        </ul>
+        {% elif not user_follows %}
+        <p class="text-center">Vous ne suivez aucun utilisateurs</p>
+        {% endif %}
+    </div>
+    <h2 class="fw-normal">Abonnés</h2>
+    <div class="w-100">
+        {% if followed_by %}
+        <ul class="mt-4" >
+            {% for user in followed_by %}
+            <li class="d-flex gap-0 border border-black px-2 py-2">
+                {{user.user.username}}
+            </li>
+            {% endfor %}
+        </ul>
+        {% elif not followed_by %}
+        <p class="text-center">Vous n'avez aucun abonné</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2 class="text-center mt-5 fw-normal">Créer une critique</h2>
+
+<form method="post" enctype="multipart/form-data" class="container mt-4">
+    {% csrf_token %}
+    <div class="border border-black p-4">
+        <p>Livre / Article</p>
+        <div class="px-3">
+            {{t|crispy }}
+        </div>
+    </div>
+
+    <div class="border border-black p-4">
+        <p>Critique</p>
+        <div class="px-4">
+            {{r|crispy}}
+        </div>
+        <div class=" d-flex justify-content-end gap-4 mt-5">
+            <button onclick="location.href='{% url 'flux' %}'" type="button"
+                class="btn btn-light border border-black">Retourner</button>
+            <button type="submit" class="btn btn-light border border-black">Envoyer</button>
+        </div>
+    </div>
+
+
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="d-flex card flex-column align-items-center justify-content-center">
+    <h2 class="h3 fw-normal">Vous avez été déconnecter</h2>
+    <div>
+        <a href="{% url 'login' %}">Se connecter à nouveau</a>
+    </div>
+</div>
+
+{% endblock content %}

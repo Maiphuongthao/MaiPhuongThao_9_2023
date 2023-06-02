@@ -6,7 +6,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     <div class=" d-flex justify-content-end gap-4 mt-5">
-    <button type="button" class="btn btn-light border border-black">Retourner</button>
+    <button onclick="location.href='{% url 'flux' %}'" type="button" class="btn btn-light border border-black">Retourner</button>
     <button type="submit" class="btn btn-light border border-black">Envoyer</button></div>
 </form>
 

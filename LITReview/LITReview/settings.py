@@ -34,15 +34,13 @@ INSTALLED_APPS = [
     "main.apps.MainConfig",
     "users.apps.UsersConfig",
     "crispy_forms",
-    'crispy_bootstrap5',
+    "crispy_bootstrap5",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
-    
 ]
 
 MIDDLEWARE = [
@@ -60,7 +58,7 @@ ROOT_URLCONF = "LITReview.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR.joinpath('templates')],
+        "DIRS": [BASE_DIR.joinpath("templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -133,6 +131,4 @@ MEDIA_ROOT = BASE_DIR.joinpath("media/")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = 'flux'
-
-
+LOGIN_REDIRECT_URL = "flux"

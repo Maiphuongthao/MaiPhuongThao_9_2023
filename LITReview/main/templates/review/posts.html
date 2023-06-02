@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{% block content %}
+<section>
+    <h2 class=" text-center fw-normal my-5">
+        Vos posts
+    </h2>
+    {% for post in posts %}
+    {% if post.content_type == 'REVIEW' %}
+    <article class="d-flex flex-column border border-black mb-3 p-3">
+        <div >
+            {% if post.user.id == user.id %}
+            <div class="d-flex justify-content-between">
+                <p>Vous avez publié une critique</p>
+                <p>{{post.time_created}}</p>
+                {% else %}
+                <p>{{post.user.username}} a publié une critique</p>
+                <p>{{post.time_created}}</p>
+                {% endif %}
+            </div>
+
+            <h3 class="fw-medium">{{post.headline}}</h3>
+            <p>Note: {{post.rating}}<i class="fas fa-star ms-1 text-danger"></i></p>
+            <p>{{post.body}}</p>
+
+        </div>
+        <div class="border border-black p-3">
+            <div class="d-flex justify-content-between">
+                {% if post.user.id == user.id %}
+                <p>Vous avez demandé une critique</p>
+                <p>{{post.time_created}}</p>
+                {% else %}
+                <p>{{post.username}} a demandé une critique</p>
+                <p>{{post.time_created}}</p>
+                {% endif %}
+            </div>
+            <h3 class="fw-medium">{{post.title}}</h3>
+            <p>{{post.description}}</p>
+            {% if post.ticket.image %}
+            <div class="review_image">
+                <img class="float-start" src="{{ post.ticket.image.url }}" alt="{{post.ticket.title}}">
+            </div>
+            {% endif %}
+
+        </div>
+        <div class=" d-flex justify-content-end gap-4 mt-5">
+            <a href="{% url 'update_review' post.pk %}" type="button"
+                class="btn btn-light border border-black">Modifier</a>
+            <a href="{% url 'delete_review' post.pk %}" type="button"
+                class="btn btn-danger border border-black">Supprimer</a>
+        </div>
+    </article>
+    {% elif post.content_type == 'TICKET' %}
+    <article class="border border-black mb-3 p-3">
+        <div class="d-flex flex-column justify-content-center">
+            <div class="d-flex justify-content-between">
+                {% if post.user.id == user.id %}
+                <p>Vous avez demandé une critique</p>
+                <p>{{post.time_created}}</p>
+                {% else %}
+                <p>{{post.user.username}} a demandé une critique</p>
+                <p>{{post.time_created}}</p>
+                {% endif %}
+            </div>
+            <h3 class="fw-medium">{{post.title}}</h3>
+            <p class="">{{post.description}}</p>
+            {% if post.image %}
+            <div class="ticket_image">
+                <img class="float-start" src="{{ post.image.url }}" alt="{{post.title}}">
+            </div>
+            {% endif %}
+        </div>
+        <div class=" d-flex justify-content-end gap-4 mt-5">
+            <a href="{% url 'update_ticket' post.pk %}" type="button"
+                class="btn btn-light border border-black">Modifier</a>
+            <a href="{% url 'delete_ticket' post.pk %}" type="button"
+                class="btn btn-danger border border-black">Supprimer</a>
+        </div>
+
+    </article>
+    {% endif %}
+    {% endfor %}
+</section>
+{% endblock %}

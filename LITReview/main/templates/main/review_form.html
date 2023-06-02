@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2 class="text-center mt-5 fw-normal">Modifier</h2>
+
+<form method="post" enctype="multipart/form-data" class="container mt-4">
+    {% csrf_token %}
+    
+    <div class="border border-black p-3">
+        <p>Vous âtres en train de poster en réponse à</p>
+        <div class="border border-black p-3 m-5">
+            <div>
+                {% if t.user.id == user.id %}
+                <p>Vous avez demandé une critique</p>
+                <p>{{review.ticket.time_created}}</p>
+                {% else %}
+                <p>{{review.ticket.user.username}} a demandé une critique</p>
+                <p>{{review.ticket.time_created}}</p>
+                {% endif %}
+            </div>
+            <h3 class="fw-medium">{{review.ticket.title}}</h3>
+            <p class="">{{review.ticket.description}}</p>
+            {% if review.ticket.image %}
+            <div>
+                <img class="float-start" src="{{ review.ticket.image.url }}" alt="{{review.ticket.title}}">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="border border-black p-4">
+        <p>Critique</p>
+        <div class="px-4">
+            {{form|crispy}}
+        </div>
+        <div class=" d-flex justify-content-end gap-4 mt-5">
+            <a href="{% url 'posts' %}" type="button"
+                class="btn btn-light border border-black">Retourner</a>
+            <button type="submit" class="btn btn-light border border-black">Envoyer</button>
+        </div>
+    </div>
+
+
+</form>
+
+{% endblock %}

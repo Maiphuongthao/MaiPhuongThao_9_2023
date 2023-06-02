@@ -1,0 +1,28 @@
+<article class="border border-black mb-3 p-3">
+    <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between">
+            {% if post.user.id == user.id %}
+            <p>Vous avez demandé une critique</p>
+            <p>{{post.time_created}}</p>
+            {% else %}
+            <p>{{post.user.username}} a demandé une critique</p>
+            <p>{{post.time_created}}</p>
+            {% endif %}
+        </div>
+        <h3 class="fw-medium">{{post.title}}</h3>
+        <p class="">{{post.description}}</p>
+        {% if post.image %}
+        <div class="ticket_image">
+            <img class="object-fit-contain" src="{{ post.image.url }}" alt="{{post.title}}">
+        </div>
+        {% endif %}
+
+        <div>
+            {% if not post.ticket and post not in reviewed%}
+            <a href="{% url 'review_ticket' id=post.pk %}"
+                class="btn btn-light border border-black mx-auto mt-4 float-end">Créer une
+                critique</a>
+            {% endif %}
+        </div>
+    </div>
+</article>

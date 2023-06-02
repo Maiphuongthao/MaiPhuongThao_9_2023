@@ -1,11 +1,8 @@
 from django import forms
-from .models import UserFollows
+
 
 class SubscriptionsForm(forms.Form):
-    followed_user = forms.CharField(
-        label=False,
-        widget=forms.TextInput()
-    )
+    followed_user = forms.CharField(label=False, widget=forms.TextInput())
     # class Meta:
     #     model = UserFollows
     #     fields = ["followed_user"]
@@ -15,4 +12,3 @@ class SubscriptionsForm(forms.Form):
     #     widgets = {'followed_user': forms.TextInput()} # attrs={
     #     #     'class': 'form-control col-auto', "placeholder":"Nom d'utilisateur"
     #     # })}
-

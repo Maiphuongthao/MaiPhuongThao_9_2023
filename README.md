@@ -1,7 +1,7 @@
 # Projet 9 DA-Python
 ***Développer une nouvelle application web avec avec Django;***
 
-- ***L'applocation présente deux cas d'utilisation principaux:***
+**L'applocation présente deux cas d'utilisation principaux:**
 
 1. Les personnes qui demandent des critiques sur un livre ou sur un article particulier ;
 2. Les personnes qui recherchent des articles et des livres intéressants à lire, en se basant sur les critiques des autres.

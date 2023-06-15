@@ -162,7 +162,7 @@ def posts(request):
 
     reviews = Review.objects.filter(user=request.user)
     reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
-    reviewed = get_reviewed_tickets()
+    reviewed = get_reviewed_tickets(request.user)
     posts = sorted(
         chain(reviews, tickets), key=lambda post: post.time_created, reverse=True
     )

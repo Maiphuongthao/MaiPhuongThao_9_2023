@@ -30,16 +30,16 @@ def feed(request):
         chain(reviews, tickets), key=lambda post: post.time_created, reverse=True
     )
 
-    reviewed_tickets= get_reviewed_tickets()
+    reviewed_tickets= get_reviewed_tickets(request.user)
 
     return render(
         request, "review/feed.html", {"posts": posts, "reviewed": reviewed_tickets,"user": request.user }
     )
 
 
-def get_reviewed_tickets():
+def get_reviewed_tickets(user):
     replied_tickets = []
-    reviews = Review.objects.all()
+    reviews = Review.objects.filter(user=user)
     for review in reviews:
         replied_tickets.append(review.ticket)
     return replied_tickets

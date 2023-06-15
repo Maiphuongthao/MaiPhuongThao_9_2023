@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<section class="w-75 mb-4">
 <h2 class="text-center mt-5 fw-normal">Modifier</h2>
 
 <form method="post" enctype="multipart/form-data" class="container mt-4">
@@ -22,7 +23,7 @@
             <p class="">{{review.ticket.description}}</p>
             {% if review.ticket.image %}
             <div>
-                <img class="float-start" src="{{ review.ticket.image.url }}" alt="{{review.ticket.title}}">
+                <img class="object-fit-contain" src="{{ review.ticket.image.url }}" alt="{{review.ticket.title}}">
             </div>
             {% endif %}
         </div>
@@ -40,7 +41,7 @@
         </div>
     </div>
 
-
+</section>
 </form>
 
 {% endblock %}
